@@ -14,7 +14,6 @@ app.use(cors());
 
 app.use('/vehicles', vehicleRoutes);
 
-const CONNECTION_URL = 'mongodb+srv://sreyamsh:sreyamsh123@cluster0.91drg.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 const PORT = process.env.PORT || 5000;
 
 mongoose.connect(process.env.CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true})
