@@ -4,7 +4,13 @@ import mongoose from 'mongoose';
 export const getVehicles = async (req, res) => {
   try {
     const vehicleList = await VehicleModel.find();
-    res.status(200).json(vehicleList);
+    if (req.query && req.query.count) {
+      res.status(200).json(vehicleList.slice(0, req.query.count));
+    } else if (req.query && req.query.vin) {
+      res.status(200).json(vehicleList.filter((vehicle) => vehicle.Vin === req.query.vin));
+    } else {
+      res.status(200).json(vehicleList);
+    }
   } catch (e) {
     throw new Error(e)
   }
